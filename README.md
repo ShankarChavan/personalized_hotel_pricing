@@ -104,13 +104,13 @@ The Stage D conversion is a first-order Taylor expansion at the segment's mean b
 
 ## Tabs
 
-1. ** Data Overview** — sessions, discount distribution, booking rate by discount bucket.
-2. ** Stage 1: Propensity** — AUC, calibration plot, feature importance, distribution of P_ref(x).
-3. ** Stage 2: GBM Elasticity** — naive monotone-GBM elasticity baseline.
-4. ** Stage 2: DML Variant** — diagnostics, per-segment table with CIs, off-policy revenue evaluation showing the overconfidence gap.
-5. ** Single-Shopper Pricing** — interactive sliders. Sidebar selector chooses GBM or DML.
-6. ** Population Policy** — apply the chosen Stage 2 policy to the validation set.
-7. ** MILP Joint Optimization** — peak weekend scenario; rack vs greedy vs MILP. Capacity heatmaps, per-segment multiplier breakdown, downloadable CSV.
+1. **Data Overview** — sessions, discount distribution, booking rate by discount bucket.
+2. **Stage 1: Propensity** — AUC, calibration plot, feature importance, distribution of P_ref(x).
+3. **Stage 2: GBM Elasticity** — naive monotone-GBM elasticity baseline.
+4. **Stage 2: DML Variant** — diagnostics, per-segment table with CIs, off-policy revenue evaluation showing the overconfidence gap.
+5. **Single-Shopper Pricing** — interactive sliders. Sidebar selector chooses GBM or DML.
+6. **Population Policy** — apply the chosen Stage 2 policy to the validation set.
+7. **MILP Joint Optimization** — peak weekend scenario; rack vs greedy vs MILP. Capacity heatmaps, per-segment multiplier breakdown, downloadable CSV.
 
 ## Three production-grade lessons in this demo
 
@@ -133,9 +133,3 @@ The Stage D conversion is a first-order Taylor expansion at the segment's mean b
 - **MILP runtime** is fine for ~500 sessions. Above 5,000 you'll want OR-Tools CP-SAT or a commercial solver (Gurobi, CPLEX), or LP relaxation + rounding.
 - **The combined formula `p_book = p_ref · m^η` is constant-elasticity**, a simplification of the logit-linear DGP. They agree to first order at the segment mean; for large price moves, model the demand curve directly.
 - **Booking outcome here is per-session conversion.** Real systems also need cancellations, no-shows, and length-of-stay extension models.
-
-## Try this
-
-1. **Set `ab_test_share=0` in `data_gen.py`** → DML loses identification (`m̃ corr with T` jumps to ~0.99, `p̃ std` collapses).
-2. **In the MILP tab, drop capacity to 20/15/4** → MILP starts pricing nearly everyone out at the max multiplier; net revenue still dominates greedy because it controls overbooking.
-3. **In the MILP tab, switch the elasticity model to GBM** → notice the segment-level decisions become noisier (GBM's biased eta shifts who gets premium pricing) and net revenue drops 2–4%.
