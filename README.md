@@ -1,9 +1,9 @@
-# Hotel Pricing — Three-Stage Demo (Approach 2 + DML + MILP)
+# Hotel Pricing — Three-Stage Demo (Propensity+ GBM or DML + MILP)
 
 A self-contained Streamlit demo of personalized + capacity-aware pricing for
 hotel bookings. Three layers, each addressing a real production gap:
 
-> **Stage 1 + 2 (Approach 2):** P(book | x, p) = P_ref(x) × (p / rack_rate)^η(x)
+> **Stage 1 + 2 :** P(book | x, p) = P_ref(x) × (p / rack_rate)^η(x)
 > **Stage 3 (MILP):** jointly optimize prices for all active sessions subject to per-(date, room_type) capacity
 
 | Stage | Solves | Output |
