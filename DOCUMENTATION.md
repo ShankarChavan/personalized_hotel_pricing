@@ -676,4 +676,3 @@ The out-of-pocket cost a hotel pays when it is overbooked and must move a guest 
 
 ---
 
-*Prepared by the Data Science Team · Hotel Pricing AI System · Approach 2 + DML + MILP*
